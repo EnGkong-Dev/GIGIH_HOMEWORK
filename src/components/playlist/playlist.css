@@ -1,0 +1,79 @@
+.playlist {
+	border-radius: 12px;
+	margin: 10px auto 20px auto;
+	padding: 10px 40px;
+	background-color: rgb(238, 238, 238);
+	text-align: center;
+	font-size: 25px;
+	width: 100%;
+	display: block;
+}
+
+.playlist h2 {
+	margin-bottom: 10px;
+	font-size: 20px;
+}
+.playlist h3 {
+	font-size: 10px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+}
+
+.playlist-title {
+	width: 90%;
+	font-size: 18px;
+	border: none;
+	border-bottom: 2px solid #323031;
+	background-color: rgb(238, 238, 238);
+	height: 24px;
+	margin-bottom: 0px;
+}
+
+.playlist-title:focus {
+	outline: none;
+	border-radius: 3px;
+}
+.playlist-desc {
+	width: 90%;
+	font-size: 18px;
+	border: none;
+	border-bottom: 2px solid #323031;
+	background-color: rgb(238, 238, 238);
+	height: 24px;
+	margin-bottom: 15px;
+}
+
+.playlist-desc:focus {
+	outline: none;
+	border-radius: 3px;
+}
+
+@media all and (max-width: 670px) {
+	.addPlaylist {
+		font-size: 15px;
+	}
+
+	.playlist {
+		margin: 2px auto;
+		padding: 5px 20px;
+		font-size: 20px;
+	}
+
+	.playlist h2 {
+		margin-bottom: 15px;
+	}
+	.playlist-title {
+		width: 100%;
+	}
+	.playlist-desc {
+		width: 100%;
+	}
+
+	.playlist-title {
+		font-size: 20px;
+	}
+
+	.playlist-desc {
+		font-size: 20px;
+	}
+}
