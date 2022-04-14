@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, FC } from "react";
 import axios from "axios";
 import Playlist from "../../components/playlist";
 import SearchBar from "../../components/searchbar";
@@ -7,12 +7,13 @@ import SignIn from "../../components/signIn";
 import { useSelector } from "react-redux";
 import "./create-playlist.css";
 import { Avatar } from "@mui/material";
+import { Item } from "../../core/tsx-module/tracks";
 
-function CreatePlaylist() {
-	const token = useSelector(state => state.token.value);
-	const userName = useSelector(state => state.userProfile.name);
-	const userImage = useSelector(state => state.userProfile.image);
-	const userId = useSelector(state => state.userProfile.id);
+const CreatePlaylist: FC = () => {
+	const token = useSelector((state: any) => state.token.value);
+	const userName = useSelector((state: any) => state.userProfile.name);
+	const userImage = useSelector((state: any) => state.userProfile.image);
+	const userId = useSelector((state: any) => state.userProfile.id);
 
 	const [searchKey, setSearchKey] = useState("");
 	const [tracks, setTrack] = useState([]);
@@ -21,8 +22,8 @@ function CreatePlaylist() {
 		description: "",
 	});
 
-	const [selectedTracks, setSelectedTracks] = useState([]);
-	const [combinedTracks, setCombinedTracks] = useState([]);
+	const [selectedTracks, setSelectedTracks] = useState<any>([]);
+	const [combinedTracks, setCombinedTracks] = useState<any>([]);
 
 	const HeaderToken = () => {
 		return {
@@ -32,32 +33,44 @@ function CreatePlaylist() {
 		};
 	};
 
-	const handleSelectedTrack = track => {
-		const alreadySelected = selectedTracks.find(t => t.uri === track.uri);
+	const handleSelectedTrack = (track: Item) => {
+		const alreadySelected = selectedTracks.find(
+			(t: any) => t.uri === track.uri
+		);
 		alreadySelected
-			? setSelectedTracks(selectedTracks.filter(t => t.uri !== track.uri))
-			: setSelectedTracks(selectedTracks => [...selectedTracks, track]);
+			? setSelectedTracks(
+					selectedTracks.filter((t: Item) => t.uri !== track.uri)
+			  )
+			: setSelectedTracks((selectedTracks: Item[]) => [
+					...selectedTracks,
+					track,
+			  ]);
 		console.log(selectedTracks);
 	};
 
 	useEffect(() => {
-		const combinedTrackWithSelectedTrack = tracks.map(track => ({
+		const combinedTrackWithSelectedTrack = tracks.map((track: Item) => ({
 			...track,
-			isSelected: selectedTracks.find(t => t.uri === track.uri),
+			isSelected: selectedTracks.find((t: Item) => t.uri === track.uri),
 		}));
 		setCombinedTracks(combinedTrackWithSelectedTrack);
 	}, [selectedTracks, tracks]);
 
 	const renderSearchItems = () =>
-		combinedTracks.map(item => {
+		combinedTracks.map((item: any) => {
 			const { uri } = item;
 			return (
-				<Music key={uri} track={item} onSelectedTrack={handleSelectedTrack} />
+				<Music
+					key={uri}
+					track={item}
+					onSelectedTrack={handleSelectedTrack}
+					selectedList={false}
+				/>
 			);
 		});
 
 	const renderSelectedItems = () =>
-		selectedTracks.map(item => {
+		selectedTracks.map((item: any) => {
 			const { uri } = item;
 			return (
 				<Music
@@ -69,9 +82,9 @@ function CreatePlaylist() {
 			);
 		});
 
-	const playlistAdd = async e => {
+	const playlistAdd = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		const uris = selectedTracks.map(item => item.uri);
+		const uris = selectedTracks.map((item: Item) => item.uri);
 		axios
 			.post(
 				`https://api.spotify.com/v1/users/${userId}/playlists`,
@@ -95,39 +108,49 @@ function CreatePlaylist() {
 			});
 	};
 
-	const searchTrack = async e => {
+	const searchTrack = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		const { data } = await axios
+		axios
 			.get(
 				`https://api.spotify.com/v1/search?q=${searchKey}&type=track`,
 				HeaderToken()
 			)
+			.then(function (response) {
+				setTrack(response.data.tracks.items);
+			})
 			.catch(() => {
 				alert("Search error");
 			});
-
-		setTrack(data.tracks.items);
 	};
 
-	const handleSearchChange = e => {
-		setSearchKey(e.target.value);
+	const handleSearchChange = (e: React.FormEvent<HTMLInputElement>) => {
+		setSearchKey(e.currentTarget.value);
 	};
 
-	const handlePlaylistChange = e => {
-		const { name, value } = e.target;
+	const handlePlaylistChange = (e: React.FormEvent<HTMLInputElement>) => {
+		const { name, value } = e.currentTarget;
 		setPlaylist({ ...playlist, [name]: value });
 	};
 
 	return (
 		<>
-			<h1>Hello, {userName}</h1>
-			<Avatar
-				src={userImage}
-				alt="foto user"
-				sx={{ height: 70, width: 70, display: "inline-block" }}
-			/>
-			<br />
-			<SignIn />
+			<div className="account">
+				<h1>Hello, {userName ? userName : "user"}</h1>
+				<Avatar
+					src={userImage}
+					sx={{
+						mx: "auto",
+						height: 70,
+						width: 70,
+						bgcolor: "#323031",
+						"@media(max-width: 670px)": {
+							height: 60,
+							width: 60,
+						},
+					}}
+				/>
+				<SignIn />
+			</div>
 
 			<div className="grid-container">
 				<div className="grid-item">
@@ -157,6 +180,6 @@ function CreatePlaylist() {
 			</div>
 		</>
 	);
-}
+};
 
 export default CreatePlaylist;

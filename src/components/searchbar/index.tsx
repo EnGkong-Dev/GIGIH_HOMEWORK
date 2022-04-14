@@ -1,6 +1,11 @@
 import "./searchbar.css";
 
-function SearchBar({ searchTrack, handleSearchChange }: any) {
+interface Props {
+	searchTrack(e: React.FormEvent<HTMLFormElement>): void;
+	handleSearchChange(e: React.FormEvent<HTMLInputElement>): void;
+}
+
+function SearchBar({ searchTrack, handleSearchChange }: Props) {
 	return (
 		<form className="searching" onSubmit={searchTrack}>
 			<input

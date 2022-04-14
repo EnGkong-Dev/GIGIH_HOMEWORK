@@ -2,14 +2,21 @@ import "./music.css";
 import { IconButton, Tooltip } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import DoDisturbIcon from "@mui/icons-material/DoDisturb";
+import { ItemIsSelected } from "../../core/tsx-module/tracks";
 
-function millisToMinutesAndSeconds(millis) {
-	var minutes = Math.floor(millis / 60000);
-	var seconds = ((millis % 60000) / 1000).toFixed(0);
-	return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+function millisToMinutesAndSeconds(millis: number) {
+	var minutes: number = Math.floor(millis / 60000);
+	var seconds: string = ((millis % 60000) / 1000).toFixed(0);
+	return minutes + ":" + (seconds.length < 2 ? "0" : "") + seconds;
 }
 
-const Music = ({ track, onSelectedTrack, selectedList }) => {
+interface Props {
+	track: ItemIsSelected;
+	onSelectedTrack(track: ItemIsSelected): void;
+	selectedList: boolean;
+}
+
+const Music = ({ track, onSelectedTrack, selectedList }: Props) => {
 	const { album, name, artists, duration_ms, isSelected } = track;
 
 	return (

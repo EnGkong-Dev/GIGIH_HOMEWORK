@@ -1,3 +1,8 @@
+.account {
+	display: flex;
+	flex-flow: column;
+}
+
 .grid-container {
 	display: grid;
 	grid-template-columns: 50% 50%;
@@ -31,7 +36,7 @@
 	border-radius: 10px;
 }
 .renderItems::-webkit-scrollbar-thumb {
-	background-color: rgb(238, 238, 238, 0.8);
+	background-color: rgba(225, 28, 28, 0.8);
 	border-radius: 10px;
 }
 
@@ -45,5 +50,11 @@
 	}
 	.grid-container {
 		display: unset;
+	}
+}
+
+@media all and (max-width: 670px) {
+	.account h1 {
+		font-size: 25px;
 	}
 }

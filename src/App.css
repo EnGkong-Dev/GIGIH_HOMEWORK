@@ -16,16 +16,16 @@
 	border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb {
-	background-color: rgba(255, 255, 255, 0.163);
+	background-color: rgba(232, 10, 10, 0.163);
 	border-radius: 10px;
 }
 
 body {
 	font-family: "Roboto";
-	background-color: #bbd1ea;
+	background-color: #3a0556;
 	background-size: 40% auto;
 	background-repeat: repeat;
-	color: #323031;
+	color: #dbc2cf;
 }
 
 li {
@@ -51,11 +51,11 @@ header h1 {
 	font-size: 60px;
 	text-align: center;
 	letter-spacing: 10px;
-	color: #bbd1ea;
+	color: #d5dde6;
 }
 
 header {
-	background-color: #323031;
+	background-color: #50980c;
 	height: 80px;
 	margin-bottom: 10px;
 }

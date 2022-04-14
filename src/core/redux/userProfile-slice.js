@@ -4,8 +4,7 @@ export const userProfileSlice = createSlice({
 	name: "userProfile",
 	initialState: {
 		name: "",
-		image:
-			"https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png",
+		image: "/broken-image.jpg",
 		id: "",
 	},
 	devTools: true,
