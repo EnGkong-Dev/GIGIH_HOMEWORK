@@ -7,10 +7,10 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import LoginIcon from "@mui/icons-material/Login";
 
 function SignIn() {
-	const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-  	const REDIRECT_URI = "http://localhost:3000/home";
-  	const AUTH_ENDPOINT = process.env.REACT_APP_AUTH_URL;
-  	const RESPONSE_TYPE = "token";
+	const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+	const REDIRECT_URI = "http://localhost:3000/home";
+	const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
+	const RESPONSE_TYPE = "token";
 	const SCOPE = "playlist-modify-private";
 
 	const dispatch = useDispatch();
