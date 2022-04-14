@@ -6,9 +6,13 @@ import Music from "../../components/music";
 import SignIn from "../../components/signIn";
 import { useSelector } from "react-redux";
 import "./create-playlist.css";
+import { Avatar } from "@mui/material";
 
 function CreatePlaylist() {
 	const token = useSelector(state => state.token.value);
+	const userName = useSelector(state => state.userProfile.name);
+	const userImage = useSelector(state => state.userProfile.image);
+	const userId = useSelector(state => state.userProfile.id);
 
 	const [searchKey, setSearchKey] = useState("");
 	const [tracks, setTrack] = useState([]);
@@ -69,26 +73,22 @@ function CreatePlaylist() {
 		e.preventDefault();
 		const uris = selectedTracks.map(item => item.uri);
 		axios
-			.get("https://api.spotify.com/v1/me", HeaderToken())
+			.post(
+				`https://api.spotify.com/v1/users/${userId}/playlists`,
+				{
+					name: playlist.title,
+					description: playlist.description,
+					public: false,
+				},
+				HeaderToken()
+			)
 			.then(function (response) {
-				axios
-					.post(
-						`https://api.spotify.com/v1/users/${response.data.id}/playlists`,
-						{
-							name: playlist.title,
-							description: playlist.description,
-							public: false,
-						},
-						HeaderToken()
-					)
-					.then(function (response) {
-						axios.post(
-							`https://api.spotify.com/v1/playlists/${response.data.id}/tracks`,
-							{ uris: uris },
-							HeaderToken()
-						);
-						alert("Playlist Added");
-					});
+				axios.post(
+					`https://api.spotify.com/v1/playlists/${response.data.id}/tracks`,
+					{ uris: uris },
+					HeaderToken()
+				);
+				alert("Playlist Added");
 			})
 			.catch(() => {
 				alert("Playlist add failed");
@@ -120,7 +120,15 @@ function CreatePlaylist() {
 
 	return (
 		<>
+			<h1>Hello, {userName}</h1>
+			<Avatar
+				src={userImage}
+				alt="foto user"
+				sx={{ height: 70, width: 70, display: "inline-block" }}
+			/>
+			<br />
 			<SignIn />
+
 			<div className="grid-container">
 				<div className="grid-item">
 					<Playlist

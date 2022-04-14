@@ -3,8 +3,14 @@ import { IconButton, Tooltip } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import DoDisturbIcon from "@mui/icons-material/DoDisturb";
 
+function millisToMinutesAndSeconds(millis) {
+	var minutes = Math.floor(millis / 60000);
+	var seconds = ((millis % 60000) / 1000).toFixed(0);
+	return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+}
+
 const Music = ({ track, onSelectedTrack, selectedList }) => {
-	const { album, name, artists, isSelected } = track;
+	const { album, name, artists, duration_ms, isSelected } = track;
 
 	return (
 		<div className="music">
@@ -18,19 +24,18 @@ const Music = ({ track, onSelectedTrack, selectedList }) => {
 			</div>
 
 			<div className="select-align">
-				{isSelected || selectedList ? (
-					<Tooltip title="Remove Selected Tracks" followCursor>
-						<IconButton onClick={() => onSelectedTrack(track)} size="large">
+				<h3>{millisToMinutesAndSeconds(duration_ms)}</h3>
+				<IconButton onClick={() => onSelectedTrack(track)} size="large">
+					{isSelected || selectedList ? (
+						<Tooltip title="Remove Selected Tracks" followCursor>
 							<DoDisturbIcon />
-						</IconButton>
-					</Tooltip>
-				) : (
-					<Tooltip title="Add to Selected Tracks" followCursor>
-						<IconButton onClick={() => onSelectedTrack(track)} size="large">
+						</Tooltip>
+					) : (
+						<Tooltip title="Add to Selected Tracks" followCursor>
 							<AddIcon />
-						</IconButton>
-					</Tooltip>
-				)}
+						</Tooltip>
+					)}
+				</IconButton>
 			</div>
 		</div>
 	);

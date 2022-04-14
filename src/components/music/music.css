@@ -41,6 +41,9 @@
 
 .select-align {
 	margin: 6px 0px 0px auto;
+	display: flex;
+	flex-flow: row;
+	align-items: center;
 	text-align: right;
 }
 

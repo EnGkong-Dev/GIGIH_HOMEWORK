@@ -1,6 +1,6 @@
 import "./searchbar.css";
 
-function SearchBar({ searchTrack, handleSearchChange }) {
+function SearchBar({ searchTrack, handleSearchChange }: any) {
 	return (
 		<form className="searching" onSubmit={searchTrack}>
 			<input

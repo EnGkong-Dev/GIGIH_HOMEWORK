@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import { login } from "../../core/redux/token-slice";
+import { addUserProfile } from "../../core/redux/userProfile-slice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import LoginIcon from "@mui/icons-material/Login";
+import axios from "axios";
 
 function SignIn() {
 	const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-	const REDIRECT_URI = "http://localhost:3000/home";
-	const AUTH_ENDPOINT = process.env.REACT_APP_AUTH_URL;
-	const RESPONSE_TYPE = "token";
-  const SCOPE = "playlist-modify-private";
+  	const REDIRECT_URI = "http://localhost:3000/home";
+  	const AUTH_ENDPOINT = process.env.REACT_APP_AUTH_URL;
+  	const RESPONSE_TYPE = "token";
+	const SCOPE = "playlist-modify-private";
 
 	const dispatch = useDispatch();
 	const [token, setToken] = useState("");
@@ -34,17 +36,28 @@ function SignIn() {
 		dispatch(login(token));
 		window.localStorage.setItem("token", token);
 
+		axios
+			.get("https://api.spotify.com/v1/me", {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			})
+			.then(function (response) {
+				dispatch(addUserProfile(response.data));
+			});
+
 		var setupTime = localStorage.getItem("setupTime");
 		if (now - setupTime > 3600 * 1000) {
 			window.localStorage.clear();
 			dispatch(login(""));
 		}
-	}, [dispatch, token]);
+	}, [dispatch]);
 
 	const logout = () => {
 		setToken("");
 		window.localStorage.setItem("token", "");
 		dispatch(login(""));
+		dispatch(addUserProfile(""));
 	};
 	return (
 		<>
