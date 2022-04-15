@@ -8,7 +8,7 @@ function App() {
 	return (
 		<div className="App">
 			<header>
-				<h1>GIGIH HOMEWORK</h1>
+				<h1>GIGIH HOMEWORK 2</h1>
 			</header>
 			<Provider store={store}>
 				<Router>
