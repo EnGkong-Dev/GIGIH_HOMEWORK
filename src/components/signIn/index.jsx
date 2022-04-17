@@ -10,8 +10,8 @@ import axios from "axios";
 
 function SignIn() {
 	const CLIENT_ID = "150ba96f2aa14ad68821e99deddfa1bd";
-  	const REDIRECT_URI = "https://spiffy-kheer-1456c9.netlify.app/home";
-  	const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
+  	const REDIRECT_URI = "http://localhost:3000/home";
+  	const AUTH_ENDPOINT = "https://marvelous-creponne-d06fa0.netlify.app/home";
   	const RESPONSE_TYPE = "token";
 	const SCOPE = "playlist-modify-private";
 
