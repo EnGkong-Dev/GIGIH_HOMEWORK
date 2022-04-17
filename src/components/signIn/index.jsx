@@ -9,9 +9,9 @@ import LoginIcon from "@mui/icons-material/Login";
 import axios from "axios";
 
 function SignIn() {
-	const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-  	const REDIRECT_URI = "https://625bd2f8943e533e430b2f0d--prismatic-cuchufli-1b4702.netlify.app/home";
-  	const AUTH_ENDPOINT = process.env.REACT_APP_AUTH_URL;
+	const CLIENT_ID = "150ba96f2aa14ad68821e99deddfa1bd";
+  	const REDIRECT_URI = "https://spiffy-kheer-1456c9.netlify.app/home";
+  	const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   	const RESPONSE_TYPE = "token";
 	const SCOPE = "playlist-modify-private";
 
