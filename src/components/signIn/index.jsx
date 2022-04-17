@@ -10,7 +10,7 @@ import axios from "axios";
 
 function SignIn() {
 	const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-  	const REDIRECT_URI = "http://localhost:3000/home";
+  	const REDIRECT_URI = "https://625bd2f8943e533e430b2f0d--prismatic-cuchufli-1b4702.netlify.app/home";
   	const AUTH_ENDPOINT = process.env.REACT_APP_AUTH_URL;
   	const RESPONSE_TYPE = "token";
 	const SCOPE = "playlist-modify-private";
