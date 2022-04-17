@@ -10,7 +10,7 @@ import axios from "axios";
 
 function SignIn() {
 	const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-  	const REDIRECT_URI = "https://gigih-homework-iriptof6s-engkong-dev.vercel.app/home";
+  	const REDIRECT_URI = "http://localhost:3000/home";
   	const AUTH_ENDPOINT = process.env.REACT_APP_AUTH_URL;
   	const RESPONSE_TYPE = "token";
 	const SCOPE = "playlist-modify-private";
