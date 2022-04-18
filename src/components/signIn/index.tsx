@@ -12,7 +12,7 @@ import axios from "axios";
 
 const SignIn: FC = () => {
 	const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-  	const REDIRECT_URI = "http://localhost:3000/sepotify";
+  	const REDIRECT_URI = "https://gigih-homework-sepotify.vercel.app/sepotify";
   	const AUTH_ENDPOINT = process.env.REACT_APP_AUTH_URL;
   	const RESPONSE_TYPE = "token";
 	const SCOPE = "playlist-modify-private";
