@@ -7,16 +7,20 @@ export const userProfileSlice = createSlice({
 		image: "/broken-image.jpg",
 		id: "",
 	},
-	devTools: true,
 	reducers: {
 		addUserProfile: (state, action) => {
 			state.name = action.payload.display_name;
 			state.image = action.payload.images[0].url;
 			state.id = action.payload.id;
 		},
+		logOutUserProfile: state => {
+			state.name = "";
+			state.image = "/broken-image.jpg";
+			state.id = "";
+		},
 	},
 });
 
-export const { addUserProfile } = userProfileSlice.actions;
+export const { addUserProfile, logOutUserProfile } = userProfileSlice.actions;
 
 export default userProfileSlice.reducer;

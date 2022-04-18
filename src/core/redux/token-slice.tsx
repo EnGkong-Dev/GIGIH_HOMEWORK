@@ -1,11 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+interface CounterState {
+	value: string;
+}
+
+const initialState: CounterState = {
+	value: "",
+};
+
 export const tokenSlice = createSlice({
 	name: "token",
-	initialState: {
-		value: "",
-	},
-	devTools: true,
+	initialState,
 	reducers: {
 		login: (state, action) => {
 			state.value = action.payload;

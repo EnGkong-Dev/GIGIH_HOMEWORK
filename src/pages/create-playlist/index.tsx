@@ -8,13 +8,17 @@ import { useSelector } from "react-redux";
 import "./create-playlist.css";
 import { Avatar } from "@mui/material";
 import { Item } from "../../core/tsx-module/tracks";
+import { tokenState, userProfileState } from "../../core/tsx-module/reduxState";
 
 const CreatePlaylist: FC = () => {
-	const token = useSelector((state: any) => state.token.value);
-	const userName = useSelector((state: any) => state.userProfile.name);
-	const userImage = useSelector((state: any) => state.userProfile.image);
-	const userId = useSelector((state: any) => state.userProfile.id);
-
+	const token = useSelector((state: tokenState) => state.token.value);
+	const userName = useSelector(
+		(state: userProfileState) => state.userProfile.name
+	);
+	const userImage = useSelector(
+		(state: userProfileState) => state.userProfile.image
+	);
+	const userId = useSelector((state: userProfileState) => state.userProfile.id);
 	const [searchKey, setSearchKey] = useState("");
 	const [tracks, setTrack] = useState([]);
 	const [playlist, setPlaylist] = useState({
@@ -22,8 +26,8 @@ const CreatePlaylist: FC = () => {
 		description: "",
 	});
 
-	const [selectedTracks, setSelectedTracks] = useState<any>([]);
-	const [combinedTracks, setCombinedTracks] = useState<any>([]);
+	const [selectedTracks, setSelectedTracks] = useState<Item[]>([]);
+	const [combinedTracks, setCombinedTracks] = useState<Item[]>([]);
 
 	const HeaderToken = () => {
 		return {
@@ -35,7 +39,7 @@ const CreatePlaylist: FC = () => {
 
 	const handleSelectedTrack = (track: Item) => {
 		const alreadySelected = selectedTracks.find(
-			(t: any) => t.uri === track.uri
+			(t: Item) => t.uri === track.uri
 		);
 		alreadySelected
 			? setSelectedTracks(
@@ -45,7 +49,6 @@ const CreatePlaylist: FC = () => {
 					...selectedTracks,
 					track,
 			  ]);
-		console.log(selectedTracks);
 	};
 
 	useEffect(() => {
@@ -57,7 +60,7 @@ const CreatePlaylist: FC = () => {
 	}, [selectedTracks, tracks]);
 
 	const renderSearchItems = () =>
-		combinedTracks.map((item: any) => {
+		combinedTracks.map((item: Item) => {
 			const { uri } = item;
 			return (
 				<Music
@@ -70,7 +73,7 @@ const CreatePlaylist: FC = () => {
 		});
 
 	const renderSelectedItems = () =>
-		selectedTracks.map((item: any) => {
+		selectedTracks.map((item: Item) => {
 			const { uri } = item;
 			return (
 				<Music
@@ -101,7 +104,7 @@ const CreatePlaylist: FC = () => {
 					{ uris: uris },
 					HeaderToken()
 				);
-				alert("Playlist Added");
+				alert("Playlist added");
 			})
 			.catch(() => {
 				alert("Playlist add failed");

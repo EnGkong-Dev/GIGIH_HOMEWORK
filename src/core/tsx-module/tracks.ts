@@ -76,39 +76,5 @@ export interface Item {
 	track_number: number;
 	type: string;
 	uri: string;
-}
-
-export interface ItemIsSelected {
-	album: Album;
-	artists: Artist2[];
-	available_markets: string[];
-	disc_number: number;
-	duration_ms: number;
-	explicit: boolean;
-	external_ids: ExternalIds;
-	external_urls: ExternalUrls4;
-	href: string;
-	id: string;
-	is_local: boolean;
-	name: string;
-	popularity: number;
-	preview_url: string;
-	track_number: number;
-	type: string;
-	uri: string;
-	isSelected: boolean;
-}
-
-export interface Tracks {
-	href: string;
-	items: Item[];
-	limit: number;
-	next: string;
-	offset: number;
-	previous?: any;
-	total: number;
-}
-
-export interface RootObject {
-	tracks: Tracks;
+	isSelected?: Item;
 }

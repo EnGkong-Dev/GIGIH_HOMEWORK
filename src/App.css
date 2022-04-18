@@ -16,7 +16,7 @@
 	border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb {
-	background-color: rgba(232, 10, 10, 0.163);
+	background-color: rgba(255, 255, 255, 0.163);
 	border-radius: 10px;
 }
 
@@ -51,7 +51,7 @@ header h1 {
 	font-size: 60px;
 	text-align: center;
 	letter-spacing: 10px;
-	color: #d5dde6;
+	color: #bbd1ea;
 }
 
 header {

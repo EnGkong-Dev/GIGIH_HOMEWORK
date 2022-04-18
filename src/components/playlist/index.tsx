@@ -2,7 +2,16 @@ import { Button } from "@mui/material";
 import "./playlist.css";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 
-function Playlist({ playlist, handleChange, handleSubmit }) {
+interface Props {
+	handleSubmit(e: React.FormEvent<HTMLFormElement>): void;
+	handleChange(e: React.FormEvent<HTMLInputElement>): void;
+	playlist: {
+		title: string;
+		description: string;
+	};
+}
+
+function Playlist({ playlist, handleChange, handleSubmit }: Props) {
 	return (
 		<>
 			<h1>Create Playlist</h1>
