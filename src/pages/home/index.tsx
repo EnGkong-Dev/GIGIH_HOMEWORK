@@ -4,7 +4,14 @@ function Home() {
 	return (
 		<>
 			<SignIn />
-			<h1>Please login to Search tracks and Create playlist</h1>
+			<h1 className="home-login">
+				Please login to Search tracks and Create playlist
+			</h1>
+			<div className="home-grid">
+				<div className="home-row home-left">
+					<h2>MADE WITH ❤️ EnGkongDev </h2>
+				</div>
+			</div>
 		</>
 	);
 }
