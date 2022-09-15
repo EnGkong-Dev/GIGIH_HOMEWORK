@@ -9,7 +9,7 @@ function Home() {
 			</h1>
 			<div className="home-grid">
 				<div className="home-row home-left">
-					<h2>MADE WITH ❤️ EnGkongDev qadawdaw </h2>
+					<h2>MADE WITH ❤️ EnGkongDev</h2>
 				</div>
 			</div>
 		</>
