@@ -18,12 +18,6 @@ MUI Material
 
 To get started running the project locally, please follow the steps below.
 
-First, clone the repository.
-
-```
-git clone https://github.com/zaiinhs/GIGIH_HOMEWORK.git
-```
-
 Then, install dependencies and fetch data to your local machine. Note that we use Yarn, not npm.
 
 ```
